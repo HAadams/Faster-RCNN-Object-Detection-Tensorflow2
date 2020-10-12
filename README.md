@@ -113,7 +113,7 @@ print("Created labels map 'label_map.pbtxt' successfully...")
 
 Output file (label_map.pbtxt)
 
-```json
+```java
 item {
   id: 1
   name: "bicycle"
