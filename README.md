@@ -423,6 +423,8 @@ label_map_dict = label_map_util.get_label_map_dict(label_map, use_display_name=T
 ```python
 import time
 import pathlib
+import requests
+from io import BytesIO
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -430,37 +432,32 @@ from object_detection.utils import visualization_utils as viz_utils
 
 %matplotlib inline
 
-cnt = 0
-for img in pathlib.Path("path to directory with images").glob("**/*.jpg"):
-  image = Image.open(str(img.resolve()))
-  (im_width, im_height) = image.size
-  image_np = np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
+resp = requests.get('https://images.techhive.com/images/article/2015/09/garmin_nuvicam_dashcam_day-100615653-orig.png')
 
-  input_tensor = np.expand_dims(image_np, 0)
-  detections = detect_fn(input_tensor)
+image = Image.open(BytesIO(resp.content))
+(im_width, im_height) = image.size
+image_np = np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
 
-  plt.rcParams['figure.figsize'] = [42, 21]
-  label_id_offset = 1
-  image_np_with_detections = image_np.copy()
-  viz_utils.visualize_boxes_and_labels_on_image_array(
-        image_np_with_detections,
-        detections['detection_boxes'][0].numpy(),
-        detections['detection_classes'][0].numpy().astype(np.int32),
-        detections['detection_scores'][0].numpy(),
-        category_index,
-        use_normalized_coordinates=True,
-        max_boxes_to_draw=200,
-        min_score_thresh=.40,
-        agnostic_mode=False)
+input_tensor = np.expand_dims(image_np, 0)
+detections = detect_fn(input_tensor)
 
-  plt.figure(figsize=(18,24))
-  plt.imshow(image_np_with_detections)
-  plt.show()
+plt.rcParams['figure.figsize'] = [42, 21]
+label_id_offset = 1
+image_np_with_detections = image_np.copy()
+viz_utils.visualize_boxes_and_labels_on_image_array(
+      image_np_with_detections,
+      detections['detection_boxes'][0].numpy(),
+      detections['detection_classes'][0].numpy().astype(np.int32),
+      detections['detection_scores'][0].numpy(),
+      category_index,
+      use_normalized_coordinates=True,
+      max_boxes_to_draw=200,
+      min_score_thresh=.40,
+      agnostic_mode=False)
 
-  # Perform object detection on the first three images only
-  if cnt == 3:
-    break
-  cnt += 1
+plt.figure(figsize=(18,24))
+plt.imshow(image_np_with_detections)
+plt.show()
 
 ```
 
