@@ -38,7 +38,9 @@ Run the following commands (remove %%bash if not running in Google Colab)
 ### Images
 #### Option 1
 1. solesensei's bdd100k Images from [Kaggle](https://www.kaggle.com/solesensei/solesensei_bdd100k).
-    NOTE: This tutotrial assumes single folder structure to store images (no nested images folder)
+
+        NOTE: This tutotrial assumes single folder structure to store images (no nested images folder)
+
 #### Option 2
 1. Images tab at [Berekly DeepDrive](https://bdd-data.berkeley.edu)
 
