@@ -1,5 +1,6 @@
 # Faster-RCNN 2D Object Detection with Tensorflow v2
 Instructions for training a Tensorflow v2-compatible model from the [Tensorflow v2 Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md). We use the ***Faster R-CNN ResNet50 V1 640x640*** model for this tutorial along with Berkely's DeepDrive Images and Labels (2020 version). This page includes higih level instructions to:
+
     1. Download images and labels
     2. Install Object Detection API
     3. Create Label map 
@@ -11,7 +12,8 @@ Instructions for training a Tensorflow v2-compatible model from the [Tensorflow 
     9. Model inference using the exported model
 
     NOTE: 
-    It is recommended to use Google Colab. Most of the base requirements are already installed in the hosted environment.
+    It is recommended to use Google Colab. 
+    Most of the base requirements are already installed in the hosted environment.
 
 
 ## Install Object Detection Module
