@@ -456,7 +456,6 @@ input_tensor = np.expand_dims(image_np, 0)
 detections = detect_fn(input_tensor)
 
 plt.rcParams['figure.figsize'] = [42, 21]
-label_id_offset = 1
 image_np_with_detections = image_np.copy()
 viz_utils.visualize_boxes_and_labels_on_image_array(
       image_np_with_detections,
